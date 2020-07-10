@@ -1,11 +1,23 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
+const auth = require('../middleware/auth');
+const User = require('../model/User');
+const Contact = require('../model/Contact');
 const router = express.Router();
 
 //@route    GET   api/contact
 //@description  GET all user's contact
 //@access       private
-router.get('/', (req, res) => {
-  res.send('Get all contacts');
+router.get('/', auth, async (req, res) => {
+  try {
+    const contacts = await Contact.find({ user: req.user.id }).sort({
+      date: -1,
+    });
+    res.json(contacts);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 //@route    POST  api/contact
