@@ -19,6 +19,6 @@ app.get('/', (req, res) => {
 //Routes
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/contact', contactRoute);
+app.use('/api/contacts', contactRoute);
 
 app.listen(port, () => console.log(`App running on port ${port}`));
