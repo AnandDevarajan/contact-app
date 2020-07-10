@@ -83,16 +83,34 @@ router.put('/:id', auth, async (req, res) => {
     res.json(contact);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json()
-    
+    res.status(500).json();
   }
 });
 
 //@route    DELETE api/contact/:id
 //@description  delete the contact
 //@access       private
-router.delete('/:id', (req, res) => {
-  res.send('deleted the contact');
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let contact = await Contact.findById(req.params.id);
+    if (!contact) {
+      return res.status(404).json({
+        message: 'Contact not found',
+      });
+    }
+    if (contact.user.toString() != req.user.id) {
+      return res.status(401).json({
+        message: 'ACCESS DENIED',
+      });
+    }
+    await Contact.findByIdAndRemove(req.params.id);
+    res.json({
+      message: 'Contact deleted successfully',
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 module.exports = router;
