@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Badge, BadgeProps } from 'reactstrap';
+import ContactContext from '../../context/contact/contactContext';
 import PropTypes from 'prop-types';
+const contactContext = useContext(ContactContext);
+const { deleteContact } = contactContext;
 const ContactItem = ({ contact }) => {
   const { id, name, email, phone, type } = contact;
+
+  const onDelete = () => {
+    deleteContact(id);
+  };
   return (
     <div className='card bg-dark' style={{ border: 'None', color: '#50d890' }}>
       <h3 className='text-left'>
@@ -27,7 +34,9 @@ const ContactItem = ({ contact }) => {
         )}
       </ul>
       <p>
-        <button className='btn btn-dark btn-sm'>Edit</button>{' '}
+        <button className='btn btn-dark btn-sm' onClick={onDelete}>
+          Edit
+        </button>{' '}
         <button className='btn btn-danger btn-sm'>Delete</button>
       </p>
     </div>

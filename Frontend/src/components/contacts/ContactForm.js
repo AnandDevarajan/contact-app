@@ -57,6 +57,7 @@ const ContactForm = () => {
         type='radio'
         name='type'
         value='personal'
+        onChange={onChange}
         checked={type === 'personal'}
       />{' '}
       <span style={{ color: '#50d890' }}> personal </span>
@@ -64,6 +65,7 @@ const ContactForm = () => {
         type='radio'
         name='type'
         value='professional'
+        onChange={onChange}  
         checked={type === 'professional'}
       />{' '}
       <span style={{ color: '#50d890' }}> professional </span>
