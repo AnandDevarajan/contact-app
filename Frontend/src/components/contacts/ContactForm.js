@@ -3,7 +3,7 @@ import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
-  const { addContact, current } = contactContext;
+  const { addContact, current, clearCurrent } = contactContext;
 
   useEffect(() => {
     if (current != null) {
@@ -30,7 +30,11 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(current===null){
     addContact(contact);
+    }else{
+        
+    }
     setContact({
       name: '',
       email: '',
@@ -38,10 +42,16 @@ const ContactForm = () => {
       type: 'personal',
     });
   };
+
+  const clearAll = () => {
+    clearCurrent();
+  };
   const { name, email, phone, type } = contact;
   return (
     <form onSubmit={onSubmit}>
-      <h2 style={{ color: '#50d890' }}>Add Contact</h2>
+      <h2 style={{ color: '#50d890' }}>
+        {current ? 'Edit Contact' : 'Add Contact'}
+      </h2>
       <input
         style={{ background: 'black', color: 'white' }}
         type='text'
@@ -86,10 +96,17 @@ const ContactForm = () => {
       <div>
         <input
           type='submit'
-          value='Add Contact'
+          value={current ? 'Update Contact' : 'Add Contact'}
           className='btn btn-success btn-block'
         />
       </div>
+      {current && (
+        <div>
+          <button className='btn btn-dark btn-block' onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };
