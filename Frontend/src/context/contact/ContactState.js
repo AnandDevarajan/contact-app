@@ -39,16 +39,20 @@ const ContactState = (props) => {
         phone: '222-444-444',
       },
     ],
+    current: null,
   };
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   //Add Contact
   const addContact = (contact) => {
     contact.id = v4();
-    dispatch({ type: ADD_CONTACT, payload: contact });
+    dispatch({
+      type: ADD_CONTACT,
+      payload: contact,
+    });
   };
   //Delete Contact
-  const deleteContact = (contact.id) => {
+  const deleteContact = (id) => {
     dispatch({
       type: DELETE_CONTACT,
       payload: id,
