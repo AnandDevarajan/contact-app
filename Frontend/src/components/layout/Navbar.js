@@ -8,7 +8,7 @@ const Navbar = ({ title, icon }) => {
       style={{ backgroundColor: 'black', color: '#50d890' }}
     >
       <h1>
-        <i className={icon} />
+        <i className={icon} />{' '}
         {title}
       </h1>
       <ul>
