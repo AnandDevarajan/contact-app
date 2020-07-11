@@ -19,7 +19,7 @@ const ContactState = (props) => {
     contacts: [
       {
         type: 'personal',
-        _id: '5f085bb2a8da773e143580a1',
+        id: '5f085bb2a8da773e143580a1',
         name: 'ted johnson',
         email: 'ted@gmail.com',
         phone: '222-222-222',
