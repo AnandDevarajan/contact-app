@@ -17,29 +17,32 @@ const AuthState = (props) => {
     token: localStorage.getItem('token'),
     isAuthenticated: null,
     loading: true,
+    user: null,
     error: null,
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
-//load user
+  //load user
 
-//register user
+  //register user
 
-//login user
+  //login user
 
-//logout
+  //logout
 
-//clear errors
-
-
+  //clear errors
 
   return (
-    <ContactContext.Provider
+    <AuthContext.Provider
       value={{
-      
+        token: state.token,
+        isAuthenticated: state.isAuthenticated,
+        loading: state.loading,
+        user: state.user,
+        error: state.error,
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </AuthContext.Provider>
   );
 };
-export default ContactState;
+export default AuthState;
