@@ -3,7 +3,7 @@ import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
-
+  const { addContact } = contactContext;
   const [contact, setContact] = useState({
     name: '',
     email: '',
@@ -16,7 +16,7 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    contactContext.addContact(contact);
+    addContact(contact);
     setContact({
       name: '',
       email: '',
@@ -65,7 +65,7 @@ const ContactForm = () => {
         type='radio'
         name='type'
         value='professional'
-        onChange={onChange}  
+        onChange={onChange}
         checked={type === 'professional'}
       />{' '}
       <span style={{ color: '#50d890' }}> professional </span>
