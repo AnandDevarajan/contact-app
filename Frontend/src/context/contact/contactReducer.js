@@ -40,14 +40,14 @@ export default (state, action) => {
           contact.id === action.payload.id ? action.payload : contact
         ),
       };
-    case FILTER_CONTACT:
-      return {
-        ...state,
-        filtered: state.contacts.filter((contact) => {
-          const regex = new RegExp(`${action.payload}`, 'gi');
-          return contact.name.match(regex) || contact.email.match(regex);
-        }),
-      };
+      case FILTER_CONTACT:
+        return {
+          ...state,
+          filtered: state.contacts.filter(({ name, email }) => {
+            const testString = `${name}${email}`.toLowerCase();
+            return testString.includes(action.payload.toLowerCase());
+          })
+        };
     case CLEAR_FILTER:
       return {
         ...state,
