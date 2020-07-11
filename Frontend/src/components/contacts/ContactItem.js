@@ -12,6 +12,7 @@ const ContactItem = ({ contact }) => {
     deleteContact(id);
     clearCurrent();
   };
+
   return (
     <div className='card bg-dark' style={{ border: 'None', color: '#50d890' }}>
       <h3 className='text-left'>
