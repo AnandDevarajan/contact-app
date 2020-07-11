@@ -8,15 +8,28 @@ const Navbar = ({ title, icon }) => {
       style={{ backgroundColor: 'black', color: '#50d890' }}
     >
       <h1>
-        <i className={icon} />{' '}
-        {title}
+        <i className={icon} /> {title}
       </h1>
       <ul>
         <li>
-          <Link to='/' style={{color:'#50d890'}}>Home</Link>
+          <Link to='/' style={{ color: '#50d890' }}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to='/about' style={{color:'#50d890'}}>About</Link>
+          <Link to='/about' style={{ color: '#50d890' }}>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to='/signup' style={{ color: '#50d890' }}>
+            Sign Up
+          </Link>
+        </li>
+        <li>
+          <Link to='/login' style={{ color: '#50d890' }}>
+            Login
+          </Link>
         </li>
       </ul>
     </div>
