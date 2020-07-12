@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 import { Container } from 'reactstrap';
 
 const Register = () => {
@@ -15,16 +17,18 @@ const Register = () => {
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.valu });
   const onSubmit = (e) => {
     e.preventDefault();
-    if (name === '' || email === '' || password === '') {
-      setAlert('Please enter all field', 'danger');
+    if (name === '' || email === '' || password === '' || password2 === '') {
+      return toast('Please fill all the fields', { type: 'warning' });
     } else if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+      return toast('Password not match', { type: 'error' });
     } else {
       console.log('Registered');
     }
   };
   return (
     <Container fluid>
+      <ToastContainer position='top-center' />
+
       <h1 className='text-center text-dark'>
         Account <span className='text-success'>Register</span>
       </h1>
@@ -37,7 +41,6 @@ const Register = () => {
             value={name}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
-            required
           />
         </div>
         <div className='form-group'>
@@ -48,7 +51,6 @@ const Register = () => {
             value={email}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
-            required
           />
         </div>
         <div className='form-group'>
@@ -59,8 +61,6 @@ const Register = () => {
             value={password}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
-            required
-            minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -71,8 +71,6 @@ const Register = () => {
             value={password2}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
-            required
-            minLength='6'
           />
         </div>
         <input
