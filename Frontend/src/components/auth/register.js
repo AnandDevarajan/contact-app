@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import { Container } from 'reactstrap';
+
 const Register = () => {
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -12,9 +15,14 @@ const Register = () => {
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.valu });
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log('Register Submit');
+    if (name === '' || email === '' || password === '') {
+      setAlert('Please enter all field', 'danger');
+    } else if (password !== password2) {
+      setAlert('Passwords do not match', 'danger');
+    } else {
+      console.log('Registered');
+    }
   };
-
   return (
     <Container fluid>
       <h1 className='text-center text-dark'>
