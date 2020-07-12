@@ -23,7 +23,21 @@ const AuthState = (props) => {
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
   //load user
+  const loadUser = async () => {
+    //TODO:
 
+    try {
+      const res = await Axios.get('/api/auth');
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    }
+  };
   //register user
   const register = async (formData) => {
     const config = {
@@ -64,6 +78,7 @@ const AuthState = (props) => {
         user: state.user,
         error: state.error,
         register,
+        loadUser,
         clearErrors,
       }}
     >
