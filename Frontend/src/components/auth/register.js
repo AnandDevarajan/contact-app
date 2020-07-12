@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { Container } from 'reactstrap';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
+  const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
+  const { register } = authContext;
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -22,7 +25,11 @@ const Register = () => {
     } else if (password !== password2) {
       return toast('Password not match', { type: 'error' });
     } else {
-      console.log('Registered');
+      register({
+        name,
+        email,
+        password,
+      });
     }
   };
   return (
