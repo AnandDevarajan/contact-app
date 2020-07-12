@@ -32,11 +32,7 @@ const AuthState = (props) => {
       },
     };
     try {
-      const res = await Axios.post(
-        '/api/users',
-        formData,
-        config
-      );
+      const res = await Axios.post('/api/users', formData, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -53,7 +49,12 @@ const AuthState = (props) => {
   //logout
 
   //clear errors
-  
+  const clearErorrs = () => {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -63,6 +64,7 @@ const AuthState = (props) => {
         user: state.user,
         error: state.error,
         register,
+        clearErorrs,
       }}
     >
       {props.children}

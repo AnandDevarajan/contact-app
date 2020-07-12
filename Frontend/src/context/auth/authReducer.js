@@ -29,7 +29,13 @@ export default (state, action) => {
         error: action.payload,
       };
     }
-    default:
+    case CLEAR_ERRORS:
+      {
+        return {
+          ...state,
+          error: null,
+        };
+      }
       return state;
   }
 };
