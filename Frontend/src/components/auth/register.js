@@ -5,17 +5,21 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import { Container } from 'reactstrap';
 
-const Register = () => {
+const Register = (props) => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   // const { setAlert } = alertContext;
-  const { register, error, clearErrors } = authContext;
+  const { register, error, clearErrors, isAuthenticated } = authContext;
   useEffect(() => {
+    if (isAuthenticated) {
+      props.history.push('/');
+    }
     if (error !== null) {
       toast('User Already exists', { type: 'error' });
       clearErrors();
     }
-  }, [error]);
+    //eslint -disable-next-line
+  }, [error, isAuthenticated, props.history]);
   const [user, setUser] = useState({
     name: '',
     email: '',
