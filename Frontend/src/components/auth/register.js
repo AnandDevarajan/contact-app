@@ -8,11 +8,11 @@ import { Container } from 'reactstrap';
 const Register = () => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
-  const { setAlert } = alertContext;
+  // const { setAlert } = alertContext;
   const { register, error, clearErrors } = authContext;
   useEffect(() => {
-    if (error === 'email already exits') {
-      return toast('User Already exists', { type: 'error' });
+    if (error !== null) {
+      toast('User Already exists', { type: 'error' });
       clearErrors();
     }
   }, [error]);

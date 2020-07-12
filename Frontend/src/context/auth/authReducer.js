@@ -18,7 +18,7 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
       };
-    case REGISTER_FAIL: {
+    case REGISTER_FAIL:
       localStorage.removeItem('token');
       return {
         ...state,
@@ -28,14 +28,14 @@ export default (state, action) => {
         user: null,
         error: action.payload,
       };
-    }
-    case CLEAR_ERRORS:
-      {
-        return {
-          ...state,
-          error: null,
-        };
-      }
+
+    case CLEAR_ERRORS: 
+      return {
+        ...state,
+        error: null,
+      };
+    
+    default:
       return state;
   }
 };
