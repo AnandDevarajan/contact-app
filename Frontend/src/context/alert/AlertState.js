@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { v4 } from 'uuid';
 import AlertContext from './authContext';
 import alertReducer from './authReducer';
 import { SET_ALERT, REMOVE_ALERT } from '../types';
@@ -8,19 +9,27 @@ const AuthState = (props) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
   //SET ALERT
-
+  const setAlert = (msg, type) => {
+    const id = v4();
+    dispatch({
+      type: SET_ALERT,
+      payload: {
+        msg,
+        type,
+        id,
+      },
+    });
+    setTimeout(() => dispatch({ type: REMOVE_ALERT, payload: id }), 5000);
+  };
   return (
-    <AuthContext.Provider
+    <AlertContext.Provider
       value={{
-        token: state.token,
-        isAuthenticated: state.isAuthenticated,
-        loading: state.loading,
-        user: state.user,
-        error: state.error,
+        alerts: state,
+        setAlert,
       }}
     >
       {props.children}
-    </AuthContext.Provider>
+    </AlertContext.Provider>
   );
 };
-export default AuthState;
+export default AlertState;
