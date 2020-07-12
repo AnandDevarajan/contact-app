@@ -37,6 +37,7 @@ const Register = () => {
             value={name}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
+            required
           />
         </div>
         <div className='form-group'>
@@ -47,6 +48,7 @@ const Register = () => {
             value={email}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
+            required
           />
         </div>
         <div className='form-group'>
@@ -57,6 +59,8 @@ const Register = () => {
             value={password}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
+            required
+            minLength='6'
           />
         </div>
         <div className='form-group'>
@@ -67,6 +71,8 @@ const Register = () => {
             value={password2}
             onChange={onChange}
             style={{ background: 'black', color: 'white' }}
+            required
+            minLength='6'
           />
         </div>
         <input
