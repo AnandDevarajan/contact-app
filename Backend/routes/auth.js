@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const User = require('../model/User');
 const auth = require('../middleware/auth');
-
+require('dotenv').config();
 //@route    GET   api/auth
 //@description  get logged in user
 //@access       private
@@ -56,7 +56,7 @@ router.post(
       };
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        config.get(process.env.jwtSecret),
         {
           expiresIn: 360000,
         },
