@@ -33,7 +33,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await Axios.post(
-        'http://localhost:5000/api/users',
+        '/api/users',
         formData,
         config
       );
@@ -53,7 +53,7 @@ const AuthState = (props) => {
   //logout
 
   //clear errors
-
+  
   return (
     <AuthContext.Provider
       value={{

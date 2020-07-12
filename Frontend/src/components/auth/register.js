@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,12 @@ const Register = () => {
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
-  const { register } = authContext;
+  const { register, error } = authContext;
+  useEffect(() => {
+    if (error === 'email already exits') {
+      return toast('User Already exists', { type: 'error' });
+    }
+  }, [error]);
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -17,7 +22,7 @@ const Register = () => {
     password2: '',
   });
   const { name, email, password, password2 } = user;
-  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.valu });
+  const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || password2 === '') {
