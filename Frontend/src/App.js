@@ -11,7 +11,10 @@ import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
+import setAuthToken from './utils/setAuthToken';
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 const App = () => {
   return (
     <AuthState>

@@ -12,22 +12,22 @@ const Navbar = ({ title, icon }) => {
       </h1>
       <ul>
         <li>
-          <Link to='/' style={{ color: '#50d890' }}>
+          <Link to='/' style={{ color: '#50d890',textDecoration:"none" }}>
             Home
           </Link>
         </li>
         <li>
-          <Link to='/about' style={{ color: '#50d890' }}>
+          <Link to='/about' style={{ color: '#50d890',textDecoration:"none" }}>
             About
           </Link>
         </li>
         <li>
-          <Link to='/signup' style={{ color: '#50d890' }}>
+          <Link to='/signup' style={{ color: '#50d890' ,textDecoration:"none"}}>
             Sign Up
           </Link>
         </li>
         <li>
-          <Link to='/login' style={{ color: '#50d890' }}>
+          <Link to='/login' style={{ color: '#50d890',textDecoration:"none" }}>
             Login
           </Link>
         </li>
